@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Clicker - Send Resumes, Get Nothing</title>
+    <meta name="description" content="A satirical incremental game about the modern job hunting experience">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Header Section -->
+        <header id="header">
+            <h1 id="game-title">📄 Resume Clicker</h1>
+            <div id="save-controls">
+                <button id="save-button">Save Game</button>
+                <button id="load-button">Load Game</button>
+                <button id="export-button">Export Save</button>
+                <input type="file" id="import-input" accept=".json" style="display: none;">
+                <button id="import-button">Import Save</button>
+                <button id="reset-button">Reset Game</button>
+            </div>
+        </header>
+
+        <!-- Main Game Area -->
+        <main id="main-game">
+            <!-- Left Panel: Clicking Area -->
+            <section id="left-panel">
+                <div id="resume-counter-area">
+                    <div id="resume-count">0</div>
+                    <div id="resume-label">resumes sent</div>
+                    <div id="resume-per-second">per second: 0</div>
+                </div>
+
+                <div id="clicking-area">
+                    <button id="resume-button" class="main-click-button">
+                        <span class="resume-icon">📄</span>
+                        <span class="click-text">Send Resume</span>
+                    </button>
+                </div>
+
+                <div id="flavor-text-area">
+                    <div id="current-status">Looking for opportunities...</div>
+                    <div id="recent-activity"></div>
+                </div>
+            </section>
+
+            <!-- Middle Panel: Visual Workspace -->
+            <section id="middle-panel">
+                <div id="workspace-header">
+                    <h3>🏢 Your Job Hunting Empire</h3>
+                    <div id="workspace-subtitle">Unemployed but Automated</div>
+                </div>
+                <div id="visual-workspace">
+                    <div id="workspace-lanes">
+                        <!-- Auto-sender lanes will be populated by JavaScript -->
+                    </div>
+                    <div id="floating-particles">
+                        <!-- Animated resume particles will appear here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Panel: Store and Stats -->
+            <section id="right-panel">
+                <!-- Navigation Tabs -->
+                <nav id="store-tabs">
+                    <button class="tab-button active" data-tab="auto-senders">Auto-Senders</button>
+                    <button class="tab-button" data-tab="upgrades">Upgrades</button>
+                    <button class="tab-button" data-tab="achievements">Achievements</button>
+                    <button class="tab-button" data-tab="prestige">Prestige</button>
+                    <button class="tab-button" data-tab="stats">Stats</button>
+                </nav>
+
+                <!-- Auto-Senders Tab -->
+                <div id="auto-senders-tab" class="tab-content active">
+                    <h3>📱 Auto-Senders</h3>
+                    <div id="auto-senders-list" class="store-list">
+                        <!-- Auto-senders will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Upgrades Tab -->
+                <div id="upgrades-tab" class="tab-content">
+                    <h3>⬆️ Upgrades</h3>
+                    <div id="upgrades-list" class="store-list">
+                        <!-- Upgrades will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Achievements Tab -->
+                <div id="achievements-tab" class="tab-content">
+                    <h3>🏆 Achievements</h3>
+                    <div id="achievements-list" class="store-list">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Prestige Tab -->
+                <div id="prestige-tab" class="tab-content">
+                    <h3>🔄 Career Change</h3>
+                    
+                    <!-- Prestige Overview -->
+                    <div id="prestige-overview" class="prestige-section">
+                        <div class="prestige-info">
+                            <div class="prestige-level">
+                                <span class="label">Career Level:</span>
+                                <span id="prestige-level-display" class="value">0</span>
+                            </div>
+                            <div class="life-experience">
+                                <span class="label">Life Experience:</span>
+                                <span id="life-experience-display" class="value">0</span>
+                            </div>
+                            <div class="current-industry">
+                                <span class="label">Current Industry:</span>
+                                <span id="current-industry-display" class="value">Technology 💻</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Career Change Button -->
+                        <div class="career-change-area">
+                            <div id="prestige-requirements" class="requirements">
+                                <div id="prestige-progress" class="progress-info">
+                                    <span class="progress-text">Need more resumes for Career Change</span>
+                                    <div class="progress-bar">
+                                        <div id="prestige-progress-fill" class="progress-fill"></div>
+                                    </div>
+                                </div>
+                                <div id="experience-preview" class="experience-preview">
+                                    Will gain: <span id="experience-gain-preview">0</span> Life Experience
+                                </div>
+                            </div>
+                            <button id="career-change-button" class="career-change-btn" disabled>
+                                Career Change
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Industry Selection -->
+                    <div id="industry-selection" class="prestige-section">
+                        <h4>🏢 Available Industries</h4>
+                        <div id="industry-list" class="industry-grid">
+                            <!-- Industries will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Permanent Bonuses -->
+                    <div id="permanent-bonuses" class="prestige-section">
+                        <h4>⭐ Life Experience Upgrades</h4>
+                        <div id="bonuses-list" class="store-list">
+                            <!-- Permanent bonuses will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Prestige Achievements -->
+                    <div id="prestige-achievements" class="prestige-section">
+                        <h4>🏆 Career Milestones</h4>
+                        <div id="prestige-achievements-list" class="achievements-grid">
+                            <!-- Prestige achievements will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Tab -->
+                <div id="stats-tab" class="tab-content">
+                    <h3>📊 Statistics</h3>
+                    <div id="stats-content">
+                        <div class="stat-row">
+                            <span class="stat-label">Total resumes sent:</span>
+                            <span id="total-resumes-stat" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Resumes per click:</span>
+                            <span id="click-power-stat" class="stat-value">1</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Auto-senders owned:</span>
+                            <span id="auto-senders-owned-stat" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Upgrades purchased:</span>
+                            <span id="upgrades-owned-stat" class="stat-value">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Achievements unlocked:</span>
+                            <span id="achievements-unlocked-stat" class="stat-value">0</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Notification Area -->
+        <div id="notification-area">
+            <!-- Achievement notifications and other popups will appear here -->
+        </div>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <div id="version-info">Resume Clicker v1.0 - A satirical take on job hunting</div>
+            <div id="credits">Made with 😔 for all the job seekers out there</div>
+        </footer>
+    </div>
+
+    <!-- Particle canvas for visual effects -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- BigNumber.js library for handling large numbers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bignumber.js/9.1.2/bignumber.min.js"></script>
+    <script src="saveManager.js"></script>
+    <script src="app.js"></script>
+</body>
+</html> 
