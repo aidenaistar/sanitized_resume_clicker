@@ -1,8 +1,11 @@
 # 📄 Resume Clicker
 
+This one was made as a test of https://github.com/eyaltoledano/claude-task-master
+
+
 A satirical incremental game that parodies the modern job hunting experience. Click to send resumes and experience the endless cycle of applications, rejections, and false hope that defines today's job market.
 
-## 🎮 [Play Now](https://your-username.github.io/resume_clicker)
+## 🎮 [Play Now](https://aidenaistar.github.io/sanitized_resume_clicker/)
 
 *Replace the URL above with your actual GitHub Pages URL*
 
@@ -29,7 +32,7 @@ Resume Clicker is inspired by Cookie Clicker but themed around the frustrating r
    - Select "Deploy from a branch"
    - Choose "main" branch and "/ (root)" folder
    - Click Save
-3. **Access your game** at `https://your-username.github.io/resume_clicker`
+3. **Access your game** at `https://aidenaistar.github.io/sanitized_resume_clicker/`
 
 ## 🛠 Technology Stack
 
