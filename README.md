@@ -1,6 +1,7 @@
 # 📄 Resume Clicker
 
 This one was made as a test of the Taskmaster https://github.com/eyaltoledano/claude-task-master
+
 The result is available at the github pages https://aidenaistar.github.io/sanitized_resume_clicker/
 
 A satirical incremental game that parodies the modern job hunting experience. Click to send resumes and experience the endless cycle of applications, rejections, and false hope that defines today's job market.
